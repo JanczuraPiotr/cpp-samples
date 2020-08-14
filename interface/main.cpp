@@ -18,11 +18,17 @@ int main(int argc, char **argv) {
     C1 c1;
     C11 c11, *pc11; // I1,I2, I12
     C12 c12; // I1
-
+    C1::ptr ptrC1 = C1::create();
+    C11::ptr ptrC11 = C11::create();
     pc11 = new C11;
 
     Object object;
     object.f1(c1, c12);
     object.f2(&c11, &c11);
     object.f2(pc11, pc11);
+
+    // object.f1(ptrC1, c12); // wzorzec ptr uniemożliwia rozpoznawanie interfejsów
+    object.fptr(ptrC1, c12);
+    object.fptr(ptrC11, c12);
+    // object.f2(ptrC11, c12); // wzorzec ptr uniemożliwia rozpoznawanie interfejsów
 }

@@ -5,6 +5,12 @@
 #include "Object.hpp"
 #include <tuple>
 
+void Object::fptr(Class::ptr c1, C12 c12)
+{
+    std::ignore = c1;
+    std::ignore = c12;
+}
+
 void Object::f1(C1 c1 , C12 c12)
 {
     std::ignore = c1;

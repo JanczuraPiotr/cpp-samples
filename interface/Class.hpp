@@ -4,27 +4,34 @@
 
 #ifndef INTERFACE_CLASS_HPP
 #define INTERFACE_CLASS_HPP
-
+#include <memory>
 #include "Interface.hpp"
 
 class Class {
 public:
+    typedef std::shared_ptr<Class> ptr;
     virtual ~Class() = default;
 };
 
-
 class C1 : public Class {
 public:
+    static ptr create();
+    C1() = default;
     ~C1() override = default;
 };
 
 class C11 : public C1, public virtual I1, public virtual I2, public virtual I12 {
 public:
+    typedef std::shared_ptr<C11> ptr;
+    static ptr create();
+
     ~C11() override = default;
     int version() override ;
     void i1() override;
     void i2() override;
     void i12() override;
+
+private:
 };
 
 class C12 : public C1, public virtual I1 {

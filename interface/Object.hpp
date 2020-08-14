@@ -12,6 +12,7 @@
 class Object {
 public:
     virtual ~Object() = default;
+    void fptr(Class::ptr c1, C12 c12);
     void f1(C1 c1, C12 c12);
     void f2(I1 *i1, I12 *i12);
 };

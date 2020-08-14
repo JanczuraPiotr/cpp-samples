@@ -4,6 +4,15 @@
 
 #include "Class.hpp"
 
+C1::ptr C1::create()
+{
+    return ptr(new C1());
+}
+
+C11::ptr C11::create()
+{
+    return ptr(new C11());
+}
 
 int C11::version()
 {
