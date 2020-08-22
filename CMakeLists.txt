@@ -14,4 +14,5 @@ project(${PROJECT})
 #
 
 add_subdirectory(konwersje)
+add_subdirectory(inheritance)
 add_subdirectory(interface)
