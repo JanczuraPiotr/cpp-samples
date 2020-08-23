@@ -4,20 +4,23 @@
 
 #ifndef INTERFACE_CLASS_HPP
 #define INTERFACE_CLASS_HPP
+
 #include <memory>
+#include <iostream>
+
 #include "Interface.hpp"
 
 class Class {
 public:
     typedef std::shared_ptr<Class> ptr;
-    virtual ~Class() = default;
+    virtual ~Class() { std::cout << "~Class()" << std::endl; };
 };
 
 class C1 : public Class {
 public:
     static ptr create();
     C1() = default;
-    ~C1() override = default;
+    ~C1() override  { std::cout << "~C1()" << std::endl; };
 };
 
 class C11 : public C1, public virtual I1, public virtual I2, public virtual I12 {
@@ -25,7 +28,7 @@ public:
     typedef std::shared_ptr<C11> ptr;
     static ptr create();
 
-    ~C11() override = default;
+    ~C11() override  { std::cout << "~C11()" << std::endl; };
     int version() override ;
     void i1() override;
     void i2() override;
@@ -36,24 +39,24 @@ private:
 
 class C12 : public C1, public virtual I1 {
 public:
-    ~C12() override = default;
+    ~C12() override  { std::cout << "~C12()" << std::endl; };
     void i1() override;
     int version() override;
 };
 
 class C13 : public Class, public virtual I1, public virtual I2 {
 public:
-    ~C13() override = default;
+    ~C13() override  { std::cout << "~C13()" << std::endl; };
 };
 
 class C14 : public Class, public virtual I1, public virtual I12 {
 public:
-    ~C14() override = default;
+    ~C14() override  { std::cout << "~C14()" << std::endl; };
 };
 
 class C111 : public C11, public virtual I1  {
 public:
-    ~C111() override = default;
+    ~C111() override  { std::cout << "~C111()" << std::endl; };
 
 };
 

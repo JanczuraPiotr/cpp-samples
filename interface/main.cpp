@@ -21,14 +21,17 @@ int main(int argc, char **argv) {
     C1::ptr ptrC1 = C1::create();
     C11::ptr ptrC11 = C11::create();
     pc11 = new C11;
+    std::cout << __LINE__ << std::endl;
 
     Object object;
     object.f1(c1, c12);
     object.f2(&c11, &c11);
     object.f2(pc11, pc11);
+    std::cout << __LINE__ << std::endl;
 
     // object.f1(ptrC1, c12); // wzorzec ptr uniemożliwia rozpoznawanie interfejsów
     object.fptr(ptrC1, c12);
     object.fptr(ptrC11, c12);
     // object.f2(ptrC11, c12); // wzorzec ptr uniemożliwia rozpoznawanie interfejsów
+    std::cout << __LINE__ << std::endl;
 }
