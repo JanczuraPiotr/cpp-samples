@@ -33,36 +33,40 @@ int main(int argc, char **argv) {
 
     std::cout << "inheritance" << std::endl;
 
+    std::cout << __FILE__ << " " << __LINE__ << std::endl;
+
     Class aClass;
     Class *pClass = new Class();
-    Class1 aClass1;
-    Class1 *pClass1 = new Class1();
-    Class *pClass11 = new Class1();
-    Class *pClass2  = new Class2();
-    Class1 *pClass21  = new Class2();
-    Class2 *pClass22  = new Class2();
-
-    std::cout << __LINE__ << std::endl;
     aClass.m1();
     aClass.m2();
     pClass->m1();
     pClass->m2();
-    std::cout << __LINE__ << std::endl;
+
+    std::cout << __FILE__ << " " << __LINE__ << std::endl;
+
+    Class1 aClass1;
+    Class1 *pClass1 = new Class1();
+    Class *pClass11 = new Class1();
     aClass1.m1();
     aClass1.m2();
     pClass1->m1();
     pClass1->m2();
     pClass11->m1();
     pClass11->m2();
-    std::cout << __LINE__ << std::endl;
+
+    std::cout << __FILE__ << " " << __LINE__ << std::endl;
+
+    Class *pClass2  = new Class2();
+    Class1 *pClass21  = new Class2();
+    Class2 *pClass22  = new Class2();
     pClass2->m1();
     pClass2->m2();
     pClass21->m1();
     pClass21->m2();
     pClass22->m1();
     pClass22->m2();
-    std::cout << __LINE__ << std::endl;
 
+    std::cout << __FILE__ << " " << __LINE__ << std::endl;
 
     delete pClass;
     delete pClass1;
