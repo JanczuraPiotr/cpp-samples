@@ -13,6 +13,6 @@ project(${PROJECT})
 #endif ()
 #
 
-add_subdirectory(konwersje)
+add_subdirectory(type-matching)
 add_subdirectory(inheritance)
 add_subdirectory(interface)
