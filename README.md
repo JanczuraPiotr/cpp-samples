@@ -2,7 +2,7 @@
 
 Wizualizacja pracy polimorfizmu
 
-## Interfejsy
+## Interface
 
 Próby tworzenia interfejsów za pomocą klas abstrakcyjnych i dziedziczenia wielobazowego (wirtualnego).
 
