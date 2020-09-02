@@ -6,6 +6,6 @@ Wizualizacja pracy polimorfizmu
 
 Próby tworzenia interfejsów za pomocą klas abstrakcyjnych i dziedziczenia wielobazowego (wirtualnego).
 
-## Konwersje
+## type matching
 
 Rzutowania typów i dopasowania funkcji przeciążonych.
