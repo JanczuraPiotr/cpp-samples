@@ -15,4 +15,7 @@ project(${PROJECT})
 
 add_subdirectory(type-matching)
 add_subdirectory(inheritance)
+add_subdirectory(inheritance-and-static)
 add_subdirectory(interface)
+add_subdirectory(unique_ptr)
+add_subdirectory(weak_ptr)
