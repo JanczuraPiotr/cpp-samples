@@ -13,9 +13,11 @@ project(${PROJECT})
 #endif ()
 #
 
+add_subdirectory(const-in-share_ptr)
 add_subdirectory(type-matching)
 add_subdirectory(inheritance)
 add_subdirectory(inheritance-and-static)
 add_subdirectory(interface)
+add_subdirectory(reference)
 add_subdirectory(unique_ptr)
 add_subdirectory(weak_ptr)
