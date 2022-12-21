@@ -70,7 +70,8 @@ int main()
 
   Cc::ccptr ccc1 = Cc::ccreate("c-cc1");
   Cc::ccptr ccc2 = Cc::ccreate("c-cc2");
-//  ccc1.swap(ccc2); Błąd kompilacji - ccc1 nie pozwala na swoją zmianę
+  // ccc1->name("new-c-cc1"); Błąd kompilacji - metoda jest niewidoczna.
+  // ccc1.swap(ccc2); Błąd kompilacji - ccc1 nie pozwala na swoją zmianę
 
 
   fcptr(cc1);
