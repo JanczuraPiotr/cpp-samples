@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT  cpp-samples)
 project(${PROJECT})
 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
 #
 #
 #set(Boost_DEBUG OFF)
@@ -19,3 +19,4 @@ add_subdirectory(inheritance-and-static)
 add_subdirectory(interface)
 add_subdirectory(unique_ptr)
 add_subdirectory(weak_ptr)
+add_subdirectory(xxx_ptr_in_containers)
