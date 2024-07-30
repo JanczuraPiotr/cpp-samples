@@ -13,15 +13,21 @@ public:
   typedef std::shared_ptr<Cd> ptr;
 
   static ptr create(const std::string &name) { return ptr(new Cd(name)) ;}
+  static ptr create(const std::string &name, int i) { std::ignore = i; return ptr(new Cd(name)) ;}
 
   void name(const std::string &name) { _name = name;}
   std::string name() const { return _name;  }
 
+  static void statyczna_w_cd() {}
+
+protected:
+  static int statycznaZmienna;
 private :
   explicit Cd(std::string name) : _name(std::move(name)) { }
 
   std::string _name;
 };
+int Cd::statycznaZmienna = 1;
 
 class Cc {
 public:
@@ -75,6 +81,11 @@ int main()
 
 
   fcptr(cc1);
-  fccptr(ccc1); // Mimo stałości pointea pracuje licznik odwołań
+  fccptr(ccc1); // Mimo stałości pointera pracuje licznik odwołań
 
+  // błąd : Cd::ptr cx = Cc::create("oszustwo", 2);
+
+  // błąd : cc1->statyczna_w_cd();
+  // błąd : cc1::statyczna_w_cd();
+  // błąd : Cc::statyczna_w_cd();
 }
