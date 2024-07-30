@@ -12,9 +12,8 @@ int main()
 {
   boost::filesystem::path path{"/home/piotr/plik.cos"};
 
-  std::cout << path.relative_path()  << std::endl;
-  std::cout << path.parent_path()  << std::endl;
-  std::cout << path.filename()  << std::endl;
-  std::cout << path.stem()  << std::endl;
-  std::cout << path.extension() << std::endl;
-}
+  std::cout << "relative_path :.. " << path.relative_path() << std::endl;
+  std::cout << "parent_path :.... " << path.parent_path() << std::endl;
+  std::cout << "filename :....... " << path.filename() << std::endl;
+  std::cout << "stem :........... " << path.stem() << std::endl;
+  std::cout << "extension :...... " << path.extension() << std::endl;
