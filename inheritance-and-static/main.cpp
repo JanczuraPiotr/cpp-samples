@@ -3,28 +3,29 @@
 //
 
 #include <tuple>
-#include <iostream>
+#include "../Logger.hpp"
 
-class Class {
+constexpr int COL{30};
+Logger print(COL);
+
+class Clazz {
 public:
-    Class() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-    virtual ~Class() { std::cout << __PRETTY_FUNCTION__ << std::endl; };
-    static void s1() {std::cout << __PRETTY_FUNCTION__ << std::endl; }
+    virtual ~Clazz() = default;
+    static Logger::Message stat()  { return {__PRETTY_FUNCTION__, "Pierwsza definicja."}; }
 };
 
-class Class1 : public Class {
+class Clazz1 : public Clazz {
 public:
-    Class1() : Class() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-    ~Class1() override { std::cout << __PRETTY_FUNCTION__ << std::endl; };
-    void s1() { Class::s1(); };
+    ~Clazz1() override = default;
+    Logger::Message stat()         { auto m = Clazz::stat(); return {__PRETTY_FUNCTION__, "Przys³oni³a -> " + m.first};};
+    virtual Logger::Message virt() { auto m = stat();        return {__PRETTY_FUNCTION__, m.first + " " + m.second}; };
 };
 
-class Class2 : public Class1 {
+class Clazz2 : public Clazz1 {
 public:
-    Class2() : Class1() { std::cout << __PRETTY_FUNCTION__ << std::endl; }
-    ~Class2() override = default;
-    void s1() { Class1::s1(); };
-    virtual void v1() {s1(); };
+    ~Clazz2() override = default;
+    Logger::Message stat()         { auto m = Clazz1::stat(); return {__PRETTY_FUNCTION__, "Przys³oni³a -> " + m.first};};
+    Logger::Message virt() override{ auto m = stat();         return {__PRETTY_FUNCTION__, m.first + " " + m.second};};
 };
 
 
@@ -32,28 +33,40 @@ int main(int argc, char **argv) {
     std::ignore = argc;
     std::ignore = argv;
 
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    Class aClass;
+    {
+        Clazz clazz;
+        print.log(clazz.stat(), __LINE__);
+    }
+    {
+        Clazz1 clazz1;
+        print.log(clazz1.stat(), __LINE__);
+        print.log(clazz1.virt(), __LINE__);
+    }
+    {
+        Clazz2 class2;
+        print.log(class2.stat(), __LINE__);
+        print.log(class2.virt(), __LINE__);
+    }
+    {
+        auto *clazz1 = new Clazz1();
+        auto *clazz2 = new Clazz2();
 
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    aClass.s1();
+        print.log(clazz1->stat(), __LINE__);
+        print.log(clazz1->virt(), __LINE__);
 
+        print.log(clazz2->stat(), __LINE__);
+        print.log(clazz2->virt(), __LINE__);
 
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    Class1 aClass1;
+        delete clazz1;
+        delete clazz2;
+    }
+    {
+        Clazz1 *clazz1 = new Clazz2();
 
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    aClass1.s1();
+        print.log(clazz1->stat(), __LINE__);
+        print.log(clazz1->virt(), __LINE__);
 
+        delete clazz1;
 
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    Class2 class2;
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    class2.s1();
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    class2.v1();
-
-    std::cout << std::endl;
-    std::cout << __FILE__ << " " << __LINE__ << std::endl;
-    std::cout << std::endl;
+    }
 }

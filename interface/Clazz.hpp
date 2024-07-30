@@ -9,14 +9,15 @@
 #include <iostream>
 
 #include "Interface.hpp"
+#include "../Logger.hpp"
 
-class Class {
+class Clazz {
 public:
-    typedef std::shared_ptr<Class> ptr;
-    virtual ~Class() { std::cout << "~Class()" << std::endl; };
+    typedef std::shared_ptr<Clazz> ptr;
+    virtual ~Clazz() { std::cout << "~Class()" << std::endl; };
 };
 
-class C1 : public Class {
+class C1 : public Clazz {
 public:
     static ptr create();
     C1() = default;
@@ -44,12 +45,12 @@ public:
     int version() override;
 };
 
-class C13 : public Class, public virtual I1, public virtual I2 {
+class C13 : public Clazz, public virtual I1, public virtual I2 {
 public:
     ~C13() override  { std::cout << "~C13()" << std::endl; };
 };
 
-class C14 : public Class, public virtual I1, public virtual I12 {
+class C14 : public Clazz, public virtual I1, public virtual I12 {
 public:
     ~C14() override  { std::cout << "~C14()" << std::endl; };
 };

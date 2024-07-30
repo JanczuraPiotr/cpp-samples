@@ -5,13 +5,17 @@
 #include <tuple>
 #include <iostream>
 
+#include "../Logger.hpp"
 
-void f(int p1, int line) { std::cout << "(int p1) <= ( " << p1 << " ) line: " << line << std::endl;}
-void f(short p1, int line) { std::cout << "(short p1) <= ( " << p1 << " ) line: " << line << std::endl;}
-void f(unsigned int p1, int line) { std::cout << "(unsigned int p1) <= ( " << p1 << " ) line: " << line << std::endl;}
-void f(unsigned short p1, int line) { std::cout << "(unsigned short p1) <= ( " << p1 << " ) line: " << line << std::endl;}
-void f(char p1, int line) { std::cout << "(char p1) <= ( " << (int)p1 << " ) line: " << line  << std::endl;}
-void f(unsigned char p1, int line) { std::cout << "(unsigned char p1) <= ( " << (int)p1 << " ) line: " << line  << std::endl;}
+constexpr int COL{30};
+Logger logger(COL);
+
+Logger::Message f(int p)            { return {__PRETTY_FUNCTION__, "int{"+std::to_string(p)+"}" };}
+Logger::Message f(short p)          { return {__PRETTY_FUNCTION__, "short{"+std::to_string(p)+"}" };}
+Logger::Message f(unsigned int p)   { return {__PRETTY_FUNCTION__, "unsigned int{"+std::to_string(p)+"}" };}
+Logger::Message f(unsigned short p) { return {__PRETTY_FUNCTION__, "unsigned short{"+std::to_string(p)+"}" };}
+Logger::Message f(char p)           { return {__PRETTY_FUNCTION__, "char{"+std::to_string(p)+"}" };}
+Logger::Message f(unsigned char p)  { return {__PRETTY_FUNCTION__, "unsigned char{"+std::to_string(p)+"}" };}
 
 
 
@@ -26,23 +30,23 @@ int main(int argc, char **argv) {
     char p5 = 127;
     unsigned char p6 = 128;
 
-    f(p1, __LINE__);
-    f(p2, __LINE__);
-    f(p3, __LINE__);
-    f(p4, __LINE__);
-    f(p5, __LINE__);
-    f(p6, __LINE__);
+    logger.log( f(p1), __LINE__);
+    logger.log( f(p2), __LINE__);
+    logger.log( f(p3), __LINE__);
+    logger.log( f(p4), __LINE__);
+    logger.log( f(p5), __LINE__);
+    logger.log( f(p6), __LINE__);
 
-    f(1u, __LINE__);
-    f(0xff, __LINE__);
-    f(0xffu, __LINE__);
-    f(0xffff, __LINE__);
-    f((char)49, __LINE__);
-    f((char)49u, __LINE__);
-    f((char)128, __LINE__);
-    f((char)128u, __LINE__);
-    f((unsigned char)-127, __LINE__);
-    f(-127, __LINE__);
+    logger.log( f(1u), __LINE__);
+    logger.log( f(0xff), __LINE__);
+    logger.log( f(0xffu), __LINE__);
+    logger.log( f(0xffff), __LINE__);
+    logger.log( f((char)49), __LINE__);
+    logger.log( f((char)49u), __LINE__);
+    logger.log( f((char)128), __LINE__);
+    logger.log( f((char)128u), __LINE__);
+    logger.log( f((unsigned char)-127), __LINE__);
+    logger.log( f(-127), __LINE__);
 
 
 }

@@ -6,14 +6,12 @@
 #include <iostream>
 
 #include "Interface.hpp"
-#include "Class.hpp"
+#include "Clazz.hpp"
 #include "Object.hpp"
 
 int main(int argc, char **argv) {
     std::ignore = argc;
     std::ignore = argv;
-
-    std::cout << "interface" << std::endl;
 
     C1 c1;
     C11 c11, *pc11; // I1,I2, I12

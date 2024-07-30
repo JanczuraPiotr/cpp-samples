@@ -4,4 +4,5 @@ project(weak_ptr)
 
 add_executable(weak_ptr
         main.cpp
+        ../Logger.cpp
         )

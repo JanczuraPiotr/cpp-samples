@@ -5,7 +5,7 @@
 #include "Object.hpp"
 #include <tuple>
 
-void Object::fptr(Class::ptr c1, C12 c12)
+void Object::fptr(Clazz::ptr c1, C12 c12)
 {
     std::ignore = c1;
     std::ignore = c12;
