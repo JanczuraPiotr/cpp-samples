@@ -10,6 +10,7 @@
 class Logger {
 public:
     using Message = std::pair<std::string, std::string>;
+    static constexpr int COL = 30;
 
     explicit Logger(int col);
 
