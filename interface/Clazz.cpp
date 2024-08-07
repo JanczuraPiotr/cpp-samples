@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2020.08.08
 //
 
-#include "Class.hpp"
+#include "Clazz.hpp"
 
 C1::ptr C1::create()
 {

@@ -5,21 +5,47 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "../Logger.hpp"
 
 int main()
 {
-  int i = 9;
-  std::shared_ptr<int> int0 = std::make_shared<int>(i);
-  std::weak_ptr<int> weakPtr0(int0);
-  std::cout << "weakPtr0.expired()" << " = " << weakPtr0.expired() << std::endl;
-  std::cout << "weakPtr0.use_count()" << " = " << weakPtr0.use_count() << std::endl;
-  std::cout << "*weakPtr0.lock()" << " = " << *weakPtr0.lock() << std::endl;
-  auto int1 = std::make_shared<int>(122);
-  std::weak_ptr<int> wEmpty(int1);
-  std::cout << "wEmpty.expired()" << " = " << wEmpty.expired() << std::endl;
-  std::cout << "wEmpty.use_count()" << " = " << wEmpty.use_count() << std::endl;
-  std::cout << "*wEmpty.lock()" << " = " << *wEmpty.lock() << std::endl;
+    constexpr int COL{30};
+    Logger logger(COL);
+    int i = 9;
 
+    std::weak_ptr<int> weak;
+    logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+    logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
 
+    {
+        std::shared_ptr<int> int0 = std::make_shared<int>(i);
+        weak = int0;
+        logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+        logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+
+        std::weak_ptr<int> weakPtr0(int0);
+        logger.log("weakPtr0.expired() = " + std::to_string(weakPtr0.expired()), __LINE__);
+        logger.log("weakPtr0.use_count() = " + std::to_string(weakPtr0.use_count()), __LINE__);
+        logger.log("*weakPtr0.lock() = " + std::to_string(*weakPtr0.lock()), __LINE__);
+        {
+            auto shared = int0;
+            logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+            logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+            {
+                auto shared1 = int0;
+                logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+                logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+                {
+                    auto shared2 = weak.lock();
+                    logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+                    logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+                }
+            }
+        }
+        logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+        logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+    }
+    logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
+    logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
 
 }
