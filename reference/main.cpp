@@ -1,7 +1,3 @@
-//
-// Created by piotr@janczura.pl on 2020.08.07
-//
-
 #include <tuple>
 #include <iostream>
 

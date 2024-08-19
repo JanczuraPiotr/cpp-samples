@@ -9,8 +9,6 @@
 
 int main()
 {
-    constexpr int COL{30};
-    Logger logger(COL);
     int i = 9;
 
     std::weak_ptr<int> weak;
