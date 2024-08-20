@@ -12,7 +12,8 @@ Logger::Logger(int firstColumn)
 
 void Logger::printComment(const std::string &comment) const
 {
-    std::cout << std::setw(_firstColumn) << " // " << comment;
+//    std::cout << std::setw(_firstColumn) << " // " << comment;
+    std::cout << " // " << comment;
 }
 
 void Logger::line(const char *file, int line, const std::string &comment)
@@ -26,7 +27,7 @@ void Logger::line(const char *file, int line, const std::string &comment)
     std::cout << std::endl;
 }
 
-void Logger::log(KeyValue msg, const std::string &comment)
+void Logger::log(const KeyValue& msg, const std::string &comment)
 {
     if (msg.second.empty()) {
         std::cout << std::setw(5) << "\t" << msg.first;
@@ -40,7 +41,7 @@ void Logger::log(KeyValue msg, const std::string &comment)
     std::cout << std::endl;
 }
 
-void Logger::log(KeyValue msg, int lineNr, const std::string &comment)
+void Logger::log(const KeyValue& msg, int lineNr, const std::string &comment)
 {
     if (msg.second.empty()) {
         std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first;
