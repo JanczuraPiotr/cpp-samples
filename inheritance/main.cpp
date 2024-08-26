@@ -22,7 +22,7 @@ public:
 class C2 : public C1 {
 public:
     ~C2() override = default;
-    Logger::KeyValue m1() override    { return {__PRETTY_FUNCTION__, "metoda override. Pierwotna definicja w C jako nie wirtualna."}; };
+    Logger::KeyValue m1() override    { return {__PRETTY_FUNCTION__, "metoda override. Pierwotna definicja w C jako niewirtualna."}; };
     Logger::KeyValue m2() override    { return {__PRETTY_FUNCTION__, "metoda override."}; };
     static Logger::KeyValue stat()    { return {__PRETTY_FUNCTION__, "metoda static definiowana w C2"};}
 };

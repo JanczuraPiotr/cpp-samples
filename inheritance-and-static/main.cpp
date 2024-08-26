@@ -1,29 +1,25 @@
-//
-// Created by piotr@janczura.pl on 2020.08.22
-//
-
 #include <tuple>
 #include "../Logger.hpp"
 
 
-class Clazz {
+class C1 {
 public:
-    virtual ~Clazz() = default;
-    static Logger::KeyValue stat()  { return {__PRETTY_FUNCTION__, "Pierwsza definicja."}; }
+    virtual ~C1() = default;
+    static Logger::KeyValue stat()      { return {__PRETTY_FUNCTION__, "Pierwsza definicja."}; }
 };
 
-class Clazz1 : public Clazz {
+class C2 : public C1 {
 public:
-    ~Clazz1() override = default;
-    Logger::KeyValue stat()         { auto m = Clazz::stat(); return {__PRETTY_FUNCTION__, "Przysłoniła -> " + m.first};};
-    virtual Logger::KeyValue virt() { auto m = stat();        return {__PRETTY_FUNCTION__, m.first + " " + m.second}; };
+    ~C2() override = default;
+    static Logger::KeyValue stat()      { auto m = C1::stat(); return {__PRETTY_FUNCTION__, "Przysłoniła -> " + m.first};};
+    virtual Logger::KeyValue virt()     { auto m = stat();     return {__PRETTY_FUNCTION__, m.first + " " + m.second}; };
 };
 
-class Clazz2 : public Clazz1 {
+class C3 : public C2 {
 public:
-    ~Clazz2() override = default;
-    Logger::KeyValue stat()         { auto m = Clazz1::stat(); return {__PRETTY_FUNCTION__, "Przysłoniła -> " + m.first};};
-    Logger::KeyValue virt() override{ auto m = stat();         return {__PRETTY_FUNCTION__, m.first + " " + m.second};};
+    ~C3() override = default;
+    static Logger::KeyValue stat()      { auto m = C2::stat(); return {__PRETTY_FUNCTION__, "Przysłoniła -> " + m.first};};
+    Logger::KeyValue virt() override    { auto m = stat();     return {__PRETTY_FUNCTION__, m.first + " " + m.second};};
 };
 
 
@@ -32,39 +28,39 @@ int main(int argc, char **argv) {
     std::ignore = argv;
 
     {
-        Clazz clazz;
-        logger.log(clazz.stat(), __LINE__);
+        C1 c1;
+        logger.log(c1.stat(), __LINE__);
     }
     {
-        Clazz1 clazz1;
-        logger.log(clazz1.stat(), __LINE__);
-        logger.log(clazz1.virt(), __LINE__);
+        C2 c1;
+        logger.log(c1.stat(), __LINE__);
+        logger.log(c1.virt(), __LINE__);
     }
     {
-        Clazz2 class2;
-        logger.log(class2.stat(), __LINE__);
-        logger.log(class2.virt(), __LINE__);
+        C3 c3;
+        logger.log(c3.stat(), __LINE__);
+        logger.log(c3.virt(), __LINE__);
     }
     {
-        auto *clazz1 = new Clazz1();
-        auto *clazz2 = new Clazz2();
+        auto *c2 = new C2();
+        auto *c3 = new C3();
 
-        logger.log(clazz1->stat(), __LINE__);
-        logger.log(clazz1->virt(), __LINE__);
+        logger.log(c2->stat(), __LINE__);
+        logger.log(c2->virt(), __LINE__);
 
-        logger.log(clazz2->stat(), __LINE__);
-        logger.log(clazz2->virt(), __LINE__);
+        logger.log(c3->stat(), __LINE__);
+        logger.log(c3->virt(), __LINE__);
 
-        delete clazz1;
-        delete clazz2;
+        delete c3;
+        delete c2;
     }
     {
-        Clazz1 *clazz1 = new Clazz2();
+        C2 *c3 = new C3();
 
-        logger.log(clazz1->stat(), __LINE__);
-        logger.log(clazz1->virt(), __LINE__);
+        logger.log(c3->stat(), __LINE__);
+        logger.log(c3->virt(), __LINE__);
 
-        delete clazz1;
+        delete c3;
 
     }
 }
