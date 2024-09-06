@@ -1,27 +1,27 @@
-//
-// Created by piotr@janczura.pl on 2024.07.01
-//
-
-#ifndef _LOGGER
-#define _LOGGER
+#ifndef LOGGER
+#define LOGGER
 
 #include <string>
 
 class Logger {
 public:
-    using Message = std::pair<std::string, std::string>;
+    using KeyValue = std::pair<std::string, std::string>;
 
-    explicit Logger(int col);
+    explicit Logger(int firstColumn = 5);
 
-    void line(const char *, int);
-    void log(Message msg);
-    void log(Message msg, int lineNr);
-    void log(Message msg, const std::string &note, int lineNr);
-    void log(const std::string &s, int lineNr);
+    void line(const char *, int, const std::string &comment = {});
+    void log(const KeyValue& msg, const std::string &comment = {});
+    void log(const KeyValue& msg, int lineNr, const std::string &comment = {});
+    void log(const std::string &s, int lineNr, const std::string &comment = {});
 
-private:
-    int _col;
+private: // methods
+
+    void printComment(const std::string &comment) const;
+
+private: // attributes
+    int _firstColumn;
 };
 
+static Logger logger;
 
-#endif //_LOGGER
+#endif

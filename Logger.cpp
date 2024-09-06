@@ -1,51 +1,68 @@
-//
-// Created by piotr@janczura.pl on 2024.07.01
-//
-
 #include "Logger.hpp"
 
 #include <iostream>
 #include <iomanip>
 
-Logger::Logger(int col)
-    : _col(col)
+
+Logger::Logger(int firstColumn)
+    : _firstColumn(firstColumn)
 {
 
 }
 
-void Logger::line(const char *file, int line)
+void Logger::printComment(const std::string &comment) const
 {
-    std::cout << file << ':' << line << std::endl;
+//    std::cout << std::setw(_firstColumn) << " // " << comment;
+    std::cout << " // " << comment;
 }
 
-void Logger::log(Message msg)
+void Logger::line(const char *file, int line, const std::string &comment)
+{
+    std::cout << file << ':' << line;
+
+    if (!comment.empty()) {
+        printComment(comment);
+    }
+
+    std::cout << std::endl;
+}
+
+void Logger::log(const KeyValue& msg, const std::string &comment)
 {
     if (msg.second.empty()) {
-        std::cout << std::setw(5) << "\t" << msg.first << std::endl;
+        std::cout << std::setw(5) << "\t" << msg.first;
     } else {
-        std::cout << std::setw(5) << "\t" << msg.first << " | " << msg.second << std::endl;
+        std::cout << std::setw(5) << "\t" << msg.first << " => " << msg.second;
     }
+    if (!comment.empty()) {
+        printComment(comment);
+    }
+
+    std::cout << std::endl;
 }
 
-void Logger::log(Message msg, int lineNr)
+void Logger::log(const KeyValue& msg, int lineNr, const std::string &comment)
 {
     if (msg.second.empty()) {
-        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first << std::endl;
+        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first;
     } else {
-        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first << " | " << msg.second  << std::endl;
+        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first << " => " << msg.second;
     }
+
+    if (!comment.empty()) {
+        printComment(comment);
+    }
+
+    std::cout << std::endl;
 }
 
-void Logger::log(Message msg, const std::string &note, int lineNr)
+void Logger::log(const std::string &s, int lineNr, const std::string &comment)
 {
-    if (msg.second.empty()) {
-        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first << " | " << note << std::endl;
-    } else {
-        std::cout << std::setw(5) << std::right << lineNr << ":\t" << msg.first << " | " << msg.second << " | " << note << std::endl;
-    }
-}
+    std::cout << std::setw(_firstColumn) << std::right << lineNr << ":\t" << s;
 
-void Logger::log(const std::string &s, int lineNr)
-{
-    std::cout << std::setw(5) << std::right << lineNr << ":\t" << s << std::endl;
+    if (!comment.empty()) {
+        printComment(comment);
+    }
+
+    std::cout << "\n";
 }

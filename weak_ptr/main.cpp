@@ -1,21 +1,19 @@
-//
-// Created by piotr@janczura.pl on 2022.05.011
-//
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
+
 #include "../Logger.hpp"
 
 int main()
 {
-    constexpr int COL{30};
-    Logger logger(COL);
     int i = 9;
 
     std::weak_ptr<int> weak;
     logger.log("weak.expired() = " + std::to_string(weak.expired()), __LINE__);
-    logger.log("weak.use_count() = " + std::to_string(weak.use_count()), __LINE__);
+    logger.log("weak.use_count() = " + std::to_string(weak.use_count
+    ()), __LINE__);
 
     {
         std::shared_ptr<int> int0 = std::make_shared<int>(i);

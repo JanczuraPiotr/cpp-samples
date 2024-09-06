@@ -7,15 +7,13 @@
 
 #include "../Logger.hpp"
 
-constexpr int COL{30};
-Logger logger(COL);
 
-Logger::Message f(int p)            { return {__PRETTY_FUNCTION__, "int{"+std::to_string(p)+"}" };}
-Logger::Message f(short p)          { return {__PRETTY_FUNCTION__, "short{"+std::to_string(p)+"}" };}
-Logger::Message f(unsigned int p)   { return {__PRETTY_FUNCTION__, "unsigned int{"+std::to_string(p)+"}" };}
-Logger::Message f(unsigned short p) { return {__PRETTY_FUNCTION__, "unsigned short{"+std::to_string(p)+"}" };}
-Logger::Message f(char p)           { return {__PRETTY_FUNCTION__, "char{"+std::to_string(p)+"}" };}
-Logger::Message f(unsigned char p)  { return {__PRETTY_FUNCTION__, "unsigned char{"+std::to_string(p)+"}" };}
+Logger::KeyValue f(int p)            { return {__PRETTY_FUNCTION__, "int{" + std::to_string(p) + "}" };}
+Logger::KeyValue f(short p)          { return {__PRETTY_FUNCTION__, "short{" + std::to_string(p) + "}" };}
+Logger::KeyValue f(unsigned int p)   { return {__PRETTY_FUNCTION__, "unsigned int{" + std::to_string(p) + "}" };}
+Logger::KeyValue f(unsigned short p) { return {__PRETTY_FUNCTION__, "unsigned short{" + std::to_string(p) + "}" };}
+Logger::KeyValue f(char p)           { return {__PRETTY_FUNCTION__, "char{" + std::to_string(p) + "}" };}
+Logger::KeyValue f(unsigned char p)  { return {__PRETTY_FUNCTION__, "unsigned char{" + std::to_string(p) + "}" };}
 
 
 
