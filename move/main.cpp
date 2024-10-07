@@ -1,6 +1,5 @@
 #include <string>
 #include <utility>
-#include <memory>
 
 #include "../Logger.hpp"
 
@@ -37,19 +36,32 @@ int main()
 {
     {
         std::string str("str");
-        // C1 c1(str); nie kompiluje.
+//         C1 c1(str); nie kompiluje.
         C1 c1(std::move(str));
+        if (str.empty()) {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została przesunięta.");
+        } else {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została skopiowana.");
+        }
         logger.log(c1.name(), __LINE__);
-        logger.log(str, __LINE__);
     }
 
     {
         std::string str("str");
         C2 c21(str);
+        if (str.empty()) {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została przesunięta.");
+        } else {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została skopiowana.");
+        }
         logger.log(c21.name(), __LINE__);
-        logger.log(str, __LINE__);
+
         C2 c22(std::move(str));
+        if (str.empty()) {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została przesunięta.");
+        } else {
+            logger.log(str, __LINE__, "Treść ze zmiennej str została skopiowana.");
+        }
         logger.log(c22.name(), __LINE__);
-        logger.log(str, __LINE__, "Treść ze zmiennej str została usunięta.");
     }
 }
