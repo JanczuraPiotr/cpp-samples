@@ -20,4 +20,6 @@ int main()
   logger.log({"*uInt3", std::to_string(*uInt3)}, __LINE__);
   uInt3.release();
   logger.log({"uInt3", std::to_string(static_cast<bool>(uInt3))}, __LINE__);
+  std::unique_ptr<int> uInt4;
+  // uInt4 = uInt1; operator = jest usunięty.
 }
