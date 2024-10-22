@@ -1,8 +1,5 @@
-//
-// Created by piotr@janczura.pl on 2024.07.31
-//
-
 #include <string>
+#include <cstdint>
 #include "../Logger.hpp"
 
 
