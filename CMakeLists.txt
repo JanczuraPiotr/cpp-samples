@@ -24,7 +24,7 @@ add_subdirectory(reference)
 add_subdirectory(unique_ptr)
 add_subdirectory(weak_ptr)
 add_subdirectory(variable_in_memory)
+add_subdirectory(xxx_ptr_in_containers)
 
 #add_subdirectory(type-matching)
-#add_subdirectory(xxx_ptr_in_containers)
 #add_subdirectory(zasiegi_dziedziczenia)
