@@ -1,7 +1,3 @@
-//
-// Created by piotr@janczura.pl on 2024.06.09
-//
-
 #include <chrono>
 #include <memory>
 #include <vector>
@@ -270,10 +266,11 @@ private:
 
 template<typename MeasuredClass,
          typename Precision>
-void loop(unsigned iterations, const std::string &precisionStr)
+void loopInsertEmptyObject(unsigned iterations, const std::string &precisionStr)
 {
-
     constexpr unsigned namew{30};
+    const std::type_info &classInfo = typeid(MeasuredClass);
+    std::cout << "Wstawianie pustych obiektów klasy : " << classInfo.name() << std::endl;
     {
         std::cout << std::setw(namew) << std::left << MeasuredClass::name() + "::Vector";
         typename MeasuredClass::Vector vector;
@@ -337,16 +334,16 @@ int main() {
     const char *precisionStr = "[ns]";
 
 
-    loop<Int1, Precision>(iterations, precisionStr);
-    loop<Int2, Precision>(iterations, precisionStr);
-    loop<Int10, Precision>(iterations, precisionStr);
-    loop<Int100, Precision>(iterations, precisionStr);
-    loop<Double10, Precision>(iterations, precisionStr);
-    loop<Double50, Precision>(iterations, precisionStr);
-    loop<Double100, Precision>(iterations, precisionStr);
-    loop<Mixed1, Precision>(iterations, precisionStr);
-    loop<VectorInt, Precision>(iterations, precisionStr);
-    loop<VectorDouble, Precision>(iterations, precisionStr);
-    loop<String, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Int1, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Int2, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Int10, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Int100, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Double10, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Double50, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Double100, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<Mixed1, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<VectorInt, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<VectorDouble, Precision>(iterations, precisionStr);
+    loopInsertEmptyObject<String, Precision>(iterations, precisionStr);
 
 }
