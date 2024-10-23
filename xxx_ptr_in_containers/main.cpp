@@ -269,8 +269,7 @@ template<typename MeasuredClass,
 void loopInsertEmptyObject(unsigned iterations, const std::string &precisionStr)
 {
     constexpr unsigned namew{30};
-    const std::type_info &classInfo = typeid(MeasuredClass);
-    std::cout << "Wstawianie pustych obiektów klasy : " << classInfo.name() << std::endl;
+
     {
         std::cout << std::setw(namew) << std::left << MeasuredClass::name() + "::Vector";
         typename MeasuredClass::Vector vector;
