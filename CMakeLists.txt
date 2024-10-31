@@ -27,4 +27,3 @@ add_subdirectory(variable_in_memory)
 add_subdirectory(weak_ptr)
 add_subdirectory(xxx_ptr_in_containers)
 
-#add_subdirectory(zasiegi_dziedziczenia)
