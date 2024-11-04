@@ -65,11 +65,11 @@ int main()
         logger.log("--------------",__LINE__);
 
         C2 c2;
-        fVoidVoid = std::bind(static_cast<void(C2::*)(void)>(&C2::callback), c2);
+        fVoidVoid = std::bind(static_cast<void(C2::*)(void)>(&C2::callback), &c2);
         fVoidVoid();
 
         FIntInt fIntInt;
-        fIntInt = std::bind(static_cast<int(C2::*)(int)>(&C2::callback), c2, std::placeholders::_1);
+        fIntInt = std::bind(static_cast<int(C2::*)(int)>(&C2::callback), &c2, std::placeholders::_1);
         logger.log({"fIntInt(3)", std::to_string(fIntInt(3))}, __LINE__);
     }
 
