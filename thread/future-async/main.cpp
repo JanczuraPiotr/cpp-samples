@@ -1,7 +1,7 @@
 #include <string>
 #include <future>
 
-#include "../Logger.hpp"
+#include "../../Logger.hpp"
 
 int async1()
 {
@@ -23,6 +23,8 @@ void async2(std::future<int> fi)
 
 int main()
 {
+    logger.log("Example name : " + std::string(EXAMPLE_NAME), __LINE__);
+
     // Pay attention to the order of the lines in the terminal.
     std::future<int> result = std::async(std::launch::async, async1);
     std::ignore = std::async(std::launch::async, async2, std::move(result));
