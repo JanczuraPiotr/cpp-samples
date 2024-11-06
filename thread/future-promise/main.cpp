@@ -41,10 +41,10 @@ void consumer(Future future)
 {
     try {
         std::string result = future.get();
-        logger.log("odebrano napis : " + result, __LINE__);
+        logger.log("Value was received : " + result, __LINE__);
     } catch (std::exception &exception) {
 
-        logger.log("odebrano informację o wyjątku : " + std::string(exception.what()) , __LINE__);
+        logger.log("Exception information received : " + std::string(exception.what()) , __LINE__);
     }
 }
 
