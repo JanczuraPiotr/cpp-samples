@@ -1,6 +1,4 @@
 project(thread)
 
-add_executable(${PROJECT_NAME}
-        main.cpp
-        ../Logger.cpp
-        )
+add_subdirectory(future-async)
+add_subdirectory(future-promise)
