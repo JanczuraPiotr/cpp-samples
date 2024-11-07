@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 class Logger {
 public:
     using KeyValue = std::pair<std::string, std::string>;
@@ -16,6 +17,7 @@ public:
 
 private: // methods
 
+    std::string moment();
     void printComment(const std::string &comment) const;
 
 private: // attributes
