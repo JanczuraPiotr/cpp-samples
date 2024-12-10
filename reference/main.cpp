@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
 //    int intBaza = 2;
     std::cout << __FILE__ << ":" << __LINE__ << std::endl;
-//    _int = &intBaza;
+//    _i = &intBaza;
     _int = new int{1};
     std::cout << __FILE__ << ":" << __LINE__ << std::endl;
 
@@ -58,11 +58,11 @@ int main(int argc, char **argv) {
     std::cout << _int << std::endl;
     std::cout << *_int << std::endl;
 
-//    if(_int == nullptr) {
+//    if(_i == nullptr) {
 //      std::cout << "if (_pointer == nullptr)" << std::endl;
 //    }
 //
-//    if (_int == NULL) {
+//    if (_i == NULL) {
 //      std::cout << "if (_pointer == NULL)" << std::endl;
 //    }
 

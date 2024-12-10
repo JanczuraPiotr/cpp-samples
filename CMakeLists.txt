@@ -7,6 +7,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra -Werror -Wconve
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+cmake_policy(SET CMP0167 OLD)
 set(Boost_DEBUG OFF)
 find_package(Boost)
 if (NOT Boost_FOUND)
@@ -16,6 +20,7 @@ endif ()
 add_subdirectory(const-in-share_ptr)
 add_subdirectory(controlled-construction)
 add_subdirectory(decltype)
+add_subdirectory(duplicate-names)
 add_subdirectory(function)
 add_subdirectory(inheritance)
 add_subdirectory(inheritance-and-static)
